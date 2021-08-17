@@ -22,7 +22,9 @@ const Comics = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/comics?title=${searchComic}&page=${page}`);
+        const response = await axios.get(
+          `https://my-marvelsearch-app.herokuapp.com/comics?title=${searchComic}&page=${page}`
+        );
         setData(response.data);
         setCount(response.data.count);
         setIsLoading(false);

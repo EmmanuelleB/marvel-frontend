@@ -11,7 +11,7 @@ const ComicsByCharacter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/comics/${characterId}`);
+        const response = await axios.get(`https://my-marvelsearch-app.herokuapp.com/${characterId}`);
         setData(response.data);
         setIsLoading(false);
       } catch (event) {
