@@ -8,10 +8,10 @@ import ComicsPageByCharacter from "./pages/comicsPageByCharacter/ComicsPageByCha
 import FavoriesPage from "./pages/favoriesPage/FavoriesPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 
-library.add(faHeart);
+library.add(faHeart, faBars);
 
 function App() {
   let cookie = Cookies.get("favorie");

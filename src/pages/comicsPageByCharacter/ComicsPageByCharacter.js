@@ -34,12 +34,14 @@ const ComicsByCharacter = () => {
           {data.comics.map((comicByCharacter) => {
             return (
               <div key={comicByCharacter._id} className="comicByCharacter-container">
-                <h4>{comicByCharacter.title}</h4>
-                <img
-                  src={comicByCharacter.thumbnail.path + "." + comicByCharacter.thumbnail.extension}
-                  alt={comicByCharacter.title}
-                />
-                <p className="open-sans description">{comicByCharacter.description}</p>
+                <div className="comicByCharacter-infos">
+                  <h4>{comicByCharacter.title}</h4>
+                  <img
+                    src={comicByCharacter.thumbnail.path + "." + comicByCharacter.thumbnail.extension}
+                    alt={comicByCharacter.title}
+                  />
+                  <p className="open-sans description">{comicByCharacter.description}</p>
+                </div>
               </div>
             );
           })}

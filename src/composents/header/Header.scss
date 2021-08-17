@@ -4,6 +4,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     img {
       height: 50px;
       padding: 1em 0;
@@ -15,6 +16,24 @@ header {
         color: white;
         text-decoration: none;
         margin-left: 2em;
+      }
+    }
+    .icon-bars {
+      color: white;
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  header {
+    .page-container {
+      div {
+        display: none;
+      }
+      .icon-bars {
+        color: white;
+        display: block;
       }
     }
   }

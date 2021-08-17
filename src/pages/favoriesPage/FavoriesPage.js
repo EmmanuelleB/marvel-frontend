@@ -40,7 +40,7 @@ const FavoriesPage = (props) => {
   ) : (
     <div className="favories-page">
       <div className="page-container">
-        <h1>Mes favories</h1>
+        <h1>Favorites</h1>
         <div className="favories-container">
           {favoriesList.map((favorie, index) => {
             return (

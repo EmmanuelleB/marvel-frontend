@@ -8,38 +8,91 @@
       padding-top: 2em;
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
 
       .favorie-container {
-        position: relative;
-        .btn-like {
-          color: black;
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin: 10px;
+        background-color: white;
+        margin-right: 0;
+        width: calc((100% - 45px) / 4);
+        height: 360px;
+        margin-bottom: 2em;
+
+        &:not(:nth-child(4n)) {
+          margin-right: 15px;
         }
         .favorie-infos {
           cursor: pointer;
-          background-color: white;
-          width: 190px;
-          height: 360px;
           padding: 1.5em;
-          margin-bottom: 3em;
-          margin-left: 1em;
           text-decoration: none;
           color: black;
           h4 {
             padding-bottom: 1em;
           }
           img {
-            width: 200px;
+            width: 100%;
             height: 200px;
             object-fit: cover;
-            padding-bottom: 1em;
+            padding-bottom: 0.5em;
           }
           .description {
-            max-height: 7em;
+            max-height: 4em;
             overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .favories-page {
+    .page-container {
+      .favories-container {
+        .favorie-container {
+          width: calc((100% - 30px) / 3);
+
+          &:not(:nth-child(4n)) {
+            margin-right: 0;
+          }
+          &:not(:nth-child(3n)) {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 660px) {
+  .favories-page {
+    .page-container {
+      .favories-container {
+        .favorie-container {
+          width: calc((100% - 15px) / 2);
+          &:not(:nth-child(3n)) {
+            margin-right: 0;
+          }
+          &:not(:nth-child(2n)) {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .favories-page {
+    .page-container {
+      .comicsByCharacter-container {
+        .favorie-container {
+          width: calc(100% - 15px);
+
+          &:not(:nth-child(2n)) {
+            margin-right: 0;
+          }
+          &:not(:nth-child(1n)) {
+            margin-right: 15px;
           }
         }
       }

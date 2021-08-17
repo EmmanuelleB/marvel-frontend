@@ -1,6 +1,7 @@
 import "./Header.scss";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   return (
@@ -10,11 +11,12 @@ const Header = () => {
           <img src={logo} alt="logo Marvel" />
         </Link>
 
-        <div>
+        <div className="link-container">
           <Link to="/characters">Characters</Link>
           <Link to="/comics">Comics</Link>
-          <Link to="/favories">Favories</Link>
+          <Link to="/favories">Favoris</Link>
         </div>
+        <FontAwesomeIcon icon="bars" className="icon-bars" />
       </div>
     </header>
   );
