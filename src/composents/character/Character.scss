@@ -39,5 +39,9 @@
       object-fit: cover;
       padding-bottom: 0.5em;
     }
+    .description {
+      max-height: 7em;
+      overflow: hidden;
+    }
   }
 }

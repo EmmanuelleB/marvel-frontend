@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import Cookies from "js-cookie";
 import "./FavoriesPage.scss";
 
@@ -7,6 +9,8 @@ const FavoriesPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [favoriesList, setFavoriesList] = useState();
   const [value, setValue] = useState(false);
+
+  const history = useHistory();
 
   const handleToggle = () => {
     setValue(!value);
@@ -44,8 +48,21 @@ const FavoriesPage = (props) => {
                 <button className="btn-like" onClick={() => handleDeleteFavories(favorie.id)}>
                   x
                 </button>
-                <div className="favorie-infos">
+
+                <div
+                  className="favorie-infos"
+                  onClick={() => {
+                    history.push({
+                      pathname: `/comics/${favorie.id}`,
+                      state: {
+                        id: favorie._id,
+                        name: favorie.name,
+                      },
+                    });
+                  }}
+                >
                   <h4>{favorie.name}</h4>
+
                   <img src={favorie.img + "." + favorie.extension} alt={favorie.name} />
                   <p className="open-sans description">{favorie.description}</p>
                 </div>
