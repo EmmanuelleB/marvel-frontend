@@ -1,0 +1,14 @@
+.homepage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88vh;
+
+  background-image: url(../../assets/images/pattern.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1 {
+    background-color: white;
+    padding: 10px;
+  }
+}

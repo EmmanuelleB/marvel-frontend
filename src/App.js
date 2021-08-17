@@ -1,5 +1,6 @@
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Homepage from "./pages/homepage/Homepage";
 import Header from "./composents/header/Header";
 import CharactersPage from "./pages/charactersPage/CharactersPage";
 import ComicsPage from "./pages/comicsPage/ComicsPage";
@@ -9,6 +10,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
+
 library.add(faHeart);
 
 function App() {
@@ -75,6 +77,9 @@ function App() {
         </Route>
         <Route path="/favories">
           <FavoriesPage cookie={cookie} />
+        </Route>
+        <Route path="/">
+          <Homepage />
         </Route>
       </Switch>
     </Router>

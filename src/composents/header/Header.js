@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className="page-container">
-        <Link to="/characters">
+        <Link to="/">
           <img src={logo} alt="logo Marvel" />
         </Link>
 
