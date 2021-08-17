@@ -1,0 +1,43 @@
+.character-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  .btn-like {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+
+    & :hover {
+      color: red;
+    }
+  }
+  .btn-like-black {
+    color: black;
+  }
+  .btn-like-yellow {
+    color: yellowgreen;
+  }
+
+  .character-infos {
+    cursor: pointer;
+    background-color: white;
+    width: 190px;
+    height: 360px;
+    padding: 1.5em;
+    margin-bottom: 3em;
+    margin-left: 1em;
+    text-decoration: none;
+    color: black;
+
+    h4 {
+      padding-bottom: 1em;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      padding-bottom: 0.5em;
+    }
+  }
+}

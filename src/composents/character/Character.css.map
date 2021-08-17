@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,oBAAoB,CAAA;EAChB,gBAAgB,EAAG,WAAW;EAC9B,MAAM,EAAE,MAAM;CACjB",
+    "sources": [
+        "Character.scss"
+    ],
+    "names": [],
+    "file": "Character.css"
+}

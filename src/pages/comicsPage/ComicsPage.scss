@@ -1,0 +1,14 @@
+.comics-page {
+  padding: 2em 0;
+  .page-container {
+    h1 {
+      text-align: center;
+    }
+    .comics-container {
+      padding-top: 2em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}

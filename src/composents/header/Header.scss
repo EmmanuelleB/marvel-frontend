@@ -1,0 +1,21 @@
+header {
+  background-color: black;
+  .page-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 50px;
+      padding: 1em 0;
+    }
+    div {
+      a {
+        background-color: red;
+        padding: 5px 15px;
+        color: white;
+        text-decoration: none;
+        margin-left: 2em;
+      }
+    }
+  }
+}

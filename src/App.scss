@@ -1,0 +1,66 @@
+// BASE RULES
+body {
+  font-family: "Anton", sans-serif;
+  background-color: lightgrey;
+}
+
+.page-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  // border: 1px solid red;
+}
+
+// TITLES & FONT
+h1 {
+  font-size: 34px;
+}
+h4 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 12px;
+}
+
+.open-sans {
+  font-family: "Open Sans", sans-serif;
+}
+
+//btn
+.btn-like {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+// PAGINATION
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+}
+
+.search-input {
+  width: 300px;
+  border: 0;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  &:focus {
+    outline: none;
+  }
+}

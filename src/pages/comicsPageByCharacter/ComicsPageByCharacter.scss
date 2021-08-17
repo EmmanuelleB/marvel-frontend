@@ -1,0 +1,37 @@
+.comicsByCharacter-page {
+  padding: 2em 0;
+  .page-container {
+    h1 {
+      text-align: center;
+    }
+    .comicsByCharacter-container {
+      padding-top: 2em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .comicByCharacter-container {
+        background-color: white;
+        width: 190px;
+        height: 360px;
+        padding: 1.5em;
+        margin-bottom: 3em;
+        margin-left: 1em;
+        text-decoration: none;
+        color: black;
+        h4 {
+          padding-bottom: 1em;
+        }
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          padding-bottom: 1em;
+        }
+        .description {
+          max-height: 7em;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
