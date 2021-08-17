@@ -33,7 +33,7 @@ const Character = (props) => {
       >
         <h4>{character.name}</h4>
         <img src={character.thumbnail.path + "." + character.thumbnail.extension} alt={character.name} />
-        <p className="open-sans">{character.description}</p>
+        <p className="open-sans description">{character.description}</p>
       </div>
       {/* </Link> */}
     </div>
