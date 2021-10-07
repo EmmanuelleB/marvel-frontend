@@ -9,9 +9,11 @@ import FavoriesPage from "./pages/favoriesPage/FavoriesPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 
-library.add(faHeart, faBars);
+library.add(faHeart, faBars, faChevronRight, faChevronLeft);
 
 function App() {
   let cookie = Cookies.get("favorie");
@@ -67,13 +69,18 @@ function App() {
       <Header />
       <Switch>
         <Route path="/characters">
-          <CharactersPage faHeart={faHeart} handleFavories={handleFavories} />
+          <CharactersPage
+            faHeart={faHeart}
+            handleFavories={handleFavories}
+            faChevronRight={faChevronRight}
+            faChevronLeft={faChevronLeft}
+          />
         </Route>
         <Route path="/comics/:characterId">
           <ComicsPageByCharacter />
         </Route>
         <Route path="/comics">
-          <ComicsPage faHeart={faHeart} />
+          <ComicsPage faHeart={faHeart} faChevronRight={faChevronRight} faChevronLeft={faChevronLeft} />
         </Route>
         <Route path="/favories">
           <FavoriesPage cookie={cookie} />

@@ -8,6 +8,13 @@ body {
   max-width: 1024px;
   margin: 0 auto;
 }
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+}
 @media (max-width: 1200px) {
   .page-container {
     padding: 0 2em;
@@ -66,6 +73,43 @@ p {
       background-color: red;
       color: white;
     }
+  }
+}
+
+.paginationTwo {
+  display: flex;
+  flex-wrap: wrap;
+  button {
+    border: 0;
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .prev,
+  .next {
+    background-color: grey;
+    color: white;
+  }
+  .btn {
+    background-color: white;
+
+    &:hover {
+      background-color: rgb(223, 223, 223);
+      color: white;
+    }
+    &:focus {
+      background-color: red;
+      color: white;
+    }
+  }
+  .active {
+    background-color: red;
+    color: white;
   }
 }
 

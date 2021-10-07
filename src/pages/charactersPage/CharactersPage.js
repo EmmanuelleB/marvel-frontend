@@ -1,27 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import { useLocation, Link } from "react-router-dom";
+import ReactLoading from "react-loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Character from "../../composents/character/Character";
 import { useDebounce } from "use-debounce";
 
 import "./CharactersPage.scss";
 const Characters = (props) => {
-  const { faHeart, handleFavories } = props;
+  const { faHeart, handleFavories, faChevronRight, faChevronLeft } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
 
   const [searchCharacter, setSearchCharacter] = useState("");
-  const [debouncedSearch] = useDebounce(searchCharacter, 1000);
+  // const [debouncedSearch] = useDebounce(searchCharacter, 1000);
 
   const [count, setCount] = useState();
+  const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(1);
-
-  const handleChangePage = (page) => {
-    setPage(page);
-  };
-
-  //   const location = useLocation();
-  //   const page = location.search.substr(location.search.length - 1);
+  const [pageLimit, setPageLimit] = useState(20);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +27,8 @@ const Characters = (props) => {
         );
         setData(response.data);
         setCount(response.data.count);
+        setNumberOfPage(Math.ceil(response.data.count / 100));
+
         setIsLoading(false);
       } catch (event) {
         alert("An error occurred");
@@ -39,27 +37,38 @@ const Characters = (props) => {
     fetchData();
   }, [searchCharacter, page]);
 
-  // console.log(data);
-  let pagination = [];
+  const goToNextPage = () => {
+    setPage((page) => page + 1);
+  };
 
-  const numberOfPage = Math.ceil(count / 100);
-  for (let i = 0; i < numberOfPage; i++) {
-    pagination.push(
-      <div key={i} onClick={() => handleChangePage(i + 1)}>
-        {i + 1}
-      </div>
-      // <Link key={i} to={`?page=${i + 1}`}>
-      //   {i + 1}
-      // </Link>
-    );
-  }
+  const goToPreviousPage = () => {
+    setPage((page) => page - 1);
+  };
+
+  const changePage = (event) => {
+    let pageNumber = Number(event.target.textContent);
+    setPage(pageNumber);
+  };
+
+  const getPaginationGroup = () => {
+    if (numberOfPage < pageLimit) {
+      setPageLimit(numberOfPage);
+    }
+    let start = Math.floor((page - 1) / pageLimit) * pageLimit;
+
+    return new Array(pageLimit).fill().map((item, index) => {
+      return start + index + 1;
+    });
+  };
 
   const handleSearch = (event) => {
     setSearchCharacter(event.target.value);
   };
 
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <div className="center">
+      <ReactLoading type="bubbles" color="#FF0000" height={300} width={150} />
+    </div>
   ) : (
     <div className="characters-page">
       <div className="page-container">
@@ -69,21 +78,32 @@ const Characters = (props) => {
           className="search-input"
           type="text"
           placeholder="Recherche tes personnages préférés ..."
-          value={debouncedSearch}
+          value={searchCharacter}
+          // value={debouncedSearch}
           onChange={handleSearch}
         />
-        <div className="pagination">{pagination}</div>
+        <div className="paginationTwo">
+          {page !== 1 && (
+            <button onClick={goToPreviousPage} className="prev">
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+          )}
+
+          {getPaginationGroup().map((item, index) => (
+            <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+              <span>{item}</span>
+            </button>
+          ))}
+          {page !== numberOfPage && (
+            <button onClick={goToNextPage} className="next">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          )}
+        </div>
         <div className="characters-container">
           {data.results.map((character) => {
             return (
-              <>
-                <Character
-                  key={character._id}
-                  character={character}
-                  faHeart={faHeart}
-                  handleFavories={handleFavories}
-                />
-              </>
+              <Character key={character._id} character={character} faHeart={faHeart} handleFavories={handleFavories} />
             );
           })}
         </div>

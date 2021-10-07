@@ -1,4 +1,5 @@
 import axios from "axios";
+import ReactLoading from "react-loading";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 
@@ -25,7 +26,9 @@ const ComicsByCharacter = () => {
   console.log(location);
 
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <div className="center">
+      <ReactLoading type="bubbles" color="#FF0000" height={300} width={150} />
+    </div>
   ) : (
     <div className="comicsByCharacter-page">
       <div className="page-container">

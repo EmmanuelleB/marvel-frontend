@@ -1,23 +1,23 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Comic from "../../composents/comic/Comic";
 import { useDebounce } from "use-debounce";
 import "./ComicsPage.scss";
 
 const Comics = (props) => {
-  const { handleFavories, faHeart } = props;
+  const { handleFavories, faHeart, faChevronRight, faChevronLeft } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
 
   const [searchComic, setSearchComic] = useState("");
-  const [debouncedSearch] = useDebounce(searchComic, 1000);
+  // const [debouncedSearch] = useDebounce(searchComic, 1000);
 
   const [count, setCount] = useState();
+  const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(1);
-
-  const handleChangePage = (page) => {
-    setPage(page);
-  };
+  const [pageLimit, setPageLimit] = useState(20);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +27,7 @@ const Comics = (props) => {
         );
         setData(response.data);
         setCount(response.data.count);
+        setNumberOfPage(Math.ceil(response.data.count / 100));
         setIsLoading(false);
       } catch (event) {
         alert("An error occurred");
@@ -35,26 +36,38 @@ const Comics = (props) => {
     fetchData();
   }, [searchComic, page]);
 
-  // console.log(data);
-  let pagination = [];
+  const goToNextPage = () => {
+    setPage((page) => page + 1);
+  };
 
-  const numberOfPage = Math.ceil(count / 100);
-  for (let i = 0; i < numberOfPage; i++) {
-    pagination.push(
-      <div key={i} onClick={() => handleChangePage(i + 1)}>
-        {i + 1}
-      </div>
-      // <Link key={i} to={`?page=${i + 1}`}>
-      //   {i + 1}
-      // </Link>
-    );
-  }
+  const goToPreviousPage = () => {
+    setPage((page) => page - 1);
+  };
+
+  const changePage = (event) => {
+    let pageNumber = Number(event.target.textContent);
+    setPage(pageNumber);
+  };
+
+  const getPaginationGroup = () => {
+    if (numberOfPage < pageLimit) {
+      setPageLimit(numberOfPage);
+    }
+    let start = Math.floor((page - 1) / pageLimit) * pageLimit;
+
+    return new Array(pageLimit).fill().map((item, index) => {
+      return start + index + 1;
+    });
+  };
 
   const handleSearch = (event) => {
     setSearchComic(event.target.value);
   };
+
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <div className="center">
+      <ReactLoading type="bubbles" color="#FF0000" height={300} width={150} />
+    </div>
   ) : (
     <div className="comics-page">
       <div className="page-container">
@@ -63,10 +76,30 @@ const Comics = (props) => {
           className="search-input"
           type="text"
           placeholder="Recherche tes comics préférés ..."
-          value={debouncedSearch}
+          value={searchComic}
+          // value={debouncedSearch}
           onChange={handleSearch}
         />
-        <div className="pagination">{pagination}</div>
+
+        <div className="paginationTwo">
+          {page !== 1 && (
+            <button onClick={goToPreviousPage} className="prev">
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+          )}
+
+          {getPaginationGroup().map((item, index) => (
+            <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+              <span>{item}</span>
+            </button>
+          ))}
+          {page !== numberOfPage && (
+            <button onClick={goToNextPage} className="next">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          )}
+        </div>
+
         <div className="comics-container">
           {data.results.map((comic) => {
             return <Comic key={comic._id} comic={comic} handleFavories={handleFavories} faHeart={faHeart} />;

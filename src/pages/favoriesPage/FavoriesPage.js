@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Cookies from "js-cookie";
 import "./FavoriesPage.scss";
@@ -36,7 +36,9 @@ const FavoriesPage = (props) => {
     handleToggle();
   };
   return isLoading ? (
-    <span>Rajoutez vos favories ici !</span>
+    <div className="center">
+      <span>Rajoutez vos favories ici !</span>
+    </div>
   ) : (
     <div className="favories-page">
       <div className="page-container">
