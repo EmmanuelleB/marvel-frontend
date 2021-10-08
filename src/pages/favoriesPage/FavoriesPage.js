@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import "./FavoriesPage.scss";
 
 const FavoriesPage = (props) => {
-  const { cookie } = props;
+  const { cookie, isHamburgerModalOpen } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [favoriesList, setFavoriesList] = useState();
   const [value, setValue] = useState(false);
@@ -40,7 +40,7 @@ const FavoriesPage = (props) => {
       <span>Rajoutez vos favories ici !</span>
     </div>
   ) : (
-    <div className="favories-page">
+    <div className={isHamburgerModalOpen ? "favories-page favories-page-open" : "favories-page"}>
       <div className="page-container">
         <h1>Favoris</h1>
         <div className="favories-container">

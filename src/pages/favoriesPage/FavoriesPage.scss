@@ -1,5 +1,5 @@
 .favories-page {
-  padding: 2em 0;
+  padding: 10em 0 2em 0;
   .page-container {
     h1 {
       text-align: center;
@@ -60,6 +60,15 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 760px) {
+  .favories-page {
+    padding: 5em 0 2em 0;
+  }
+  .favories-page-open {
+    padding-top: 14em;
   }
 }
 

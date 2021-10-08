@@ -1,5 +1,9 @@
 header {
   background-color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
   .page-container {
     display: flex;
     justify-content: space-between;
@@ -11,14 +15,14 @@ header {
     }
     div {
       a {
-        background-color: red;
+        background-color: rgb(163, 0, 0);
         padding: 5px 15px;
-        color: white;
+        color: darkgray;
         text-decoration: none;
         margin-left: 2em;
         &:hover {
-          background-color: rgb(163, 0, 0);
-          color: darkgray;
+          background-color: red;
+          color: white;
         }
       }
     }

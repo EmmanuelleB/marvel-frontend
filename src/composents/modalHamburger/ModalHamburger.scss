@@ -1,0 +1,41 @@
+/* FORMS & MODAL*/
+.overlayP {
+  z-index: 5;
+  //   position: fixed;
+  //   top: 5.5em;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+}
+
+.modalP {
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  .page-container .menuForm {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 5em;
+    left: 0;
+    right: 0;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+
+    a {
+      margin: 0.5em;
+      background-color: rgb(163, 0, 0);
+      text-align: center;
+      padding: 5px 15px;
+      color: darkgray;
+      text-decoration: none;
+
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+}

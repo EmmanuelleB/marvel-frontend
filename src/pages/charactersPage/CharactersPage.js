@@ -7,7 +7,7 @@ import Hulk from "../../assets/images/hulk-NB.png";
 
 import "./CharactersPage.scss";
 const Characters = (props) => {
-  const { faHeart, handleFavories, faChevronRight, faChevronLeft } = props;
+  const { faHeart, handleFavories, faChevronRight, faChevronLeft, isHamburgerModalOpen } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
 
@@ -75,7 +75,7 @@ const Characters = (props) => {
       <ReactLoading type="bubbles" color="#FF0000" height={300} width={150} />
     </div>
   ) : (
-    <div className="characters-page">
+    <div className={isHamburgerModalOpen ? "characters-page characters-page-open" : "characters-page"}>
       <div className="page-container">
         <h1>Characters</h1>
 

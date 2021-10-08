@@ -9,14 +9,23 @@ import FavoriesPage from "./pages/favoriesPage/FavoriesPage";
 import Footer from "./composents/footer/Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
+import { useState } from "react";
 
-library.add(faHeart, faBars, faChevronRight, faChevronLeft);
+library.add(faHeart, faBars, faTimes, faChevronRight, faChevronLeft);
 
 function App() {
+  //MODAL
+  const [isHamburgerModalOpen, setIsHamburgerModalOpen] = useState(false);
+
+  const handleOpenHamburgerModal = () => {
+    setIsHamburgerModalOpen(true);
+  };
+  const handleCloseHamburgerModal = () => {
+    setIsHamburgerModalOpen(false);
+  };
+
   let cookie = Cookies.get("favorie");
   const handleFavories = (item) => {
     let newFavorie;
@@ -40,16 +49,11 @@ function App() {
     };
 
     if (Cookies.get("favorie") === undefined) {
-      console.log("boucle1");
-
       Cookies.set("favorie", JSON.stringify(favorieItem));
       cookie = Cookies.get("favorie");
-      // console.log("cookie =>> " + cookie);
     } else {
-      console.log("boucle2");
       newFavorie = JSON.parse(cookie);
-      console.log(newFavorie);
-      console.log(favorieItemMore.id);
+
       for (let i = 0; i < newFavorie.length; i++) {
         if (newFavorie[i].id.indexOf(favorieItemMore.id) !== -1) {
           alert("Attention votre favorie est déjà enregisté !");
@@ -61,13 +65,18 @@ function App() {
 
       Cookies.set("favorie", newFavorieString);
       cookie = Cookies.get("favorie");
-      // console.log("cookie =>> " + cookie);
     }
   };
 
   return (
     <Router>
-      <Header />
+      <Header
+        faBars={faBars}
+        faTimes={faTimes}
+        isHamburgerModalOpen={isHamburgerModalOpen}
+        handleCloseHamburgerModal={handleCloseHamburgerModal}
+        handleOpenHamburgerModal={handleOpenHamburgerModal}
+      />
       <Switch>
         <Route path="/characters">
           <CharactersPage
@@ -75,16 +84,22 @@ function App() {
             handleFavories={handleFavories}
             faChevronRight={faChevronRight}
             faChevronLeft={faChevronLeft}
+            isHamburgerModalOpen={isHamburgerModalOpen}
           />
         </Route>
         <Route path="/comics/:characterId">
           <ComicsPageByCharacter />
         </Route>
         <Route path="/comics">
-          <ComicsPage faHeart={faHeart} faChevronRight={faChevronRight} faChevronLeft={faChevronLeft} />
+          <ComicsPage
+            faHeart={faHeart}
+            faChevronRight={faChevronRight}
+            faChevronLeft={faChevronLeft}
+            isHamburgerModalOpen={isHamburgerModalOpen}
+          />
         </Route>
         <Route path="/favories">
-          <FavoriesPage cookie={cookie} />
+          <FavoriesPage cookie={cookie} isHamburgerModalOpen={isHamburgerModalOpen} />
         </Route>
         <Route path="/">
           <Homepage />
