@@ -12,3 +12,16 @@
     padding: 10px;
   }
 }
+
+@media (max-width: 960px) {
+  .homepage-container {
+    background-position: center;
+  }
+}
+
+@media (max-width: 760px) {
+  h1 {
+    text-align: center;
+    margin: 1em;
+  }
+}

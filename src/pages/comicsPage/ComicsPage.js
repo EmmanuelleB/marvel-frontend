@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Comic from "../../composents/comic/Comic";
-import { useDebounce } from "use-debounce";
 import "./ComicsPage.scss";
+import Hulk from "../../assets/images/hulk-NB.png";
 
 const Comics = (props) => {
   const { handleFavories, faHeart, faChevronRight, faChevronLeft } = props;
@@ -12,7 +12,6 @@ const Comics = (props) => {
   const [data, setData] = useState();
 
   const [searchComic, setSearchComic] = useState("");
-  // const [debouncedSearch] = useDebounce(searchComic, 1000);
 
   const [count, setCount] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
@@ -72,32 +71,34 @@ const Comics = (props) => {
     <div className="comics-page">
       <div className="page-container">
         <h1>Comics</h1>
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Recherche tes comics préférés ..."
-          value={searchComic}
-          // value={debouncedSearch}
-          onChange={handleSearch}
-        />
 
-        <div className="paginationTwo">
-          {page !== 1 && (
-            <button onClick={goToPreviousPage} className="prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-          )}
+        <div className="hulk-input">
+          <img className="hulk" src={Hulk} alt="Hulk" />
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Recherche tes comics préférés ..."
+            value={searchComic}
+            onChange={handleSearch}
+          />
+          <div className="pagination">
+            {page !== 1 && (
+              <button onClick={goToPreviousPage} className="prev">
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </button>
+            )}
 
-          {getPaginationGroup().map((item, index) => (
-            <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
-              <span>{item}</span>
-            </button>
-          ))}
-          {page !== numberOfPage && (
-            <button onClick={goToNextPage} className="next">
-              <FontAwesomeIcon icon={faChevronRight} />
-            </button>
-          )}
+            {getPaginationGroup().map((item, index) => (
+              <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+                <span>{item}</span>
+              </button>
+            ))}
+            {page !== numberOfPage && (
+              <button onClick={goToNextPage} className="next">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="comics-container">

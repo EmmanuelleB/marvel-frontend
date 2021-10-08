@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Character from "../../composents/character/Character";
-import { useDebounce } from "use-debounce";
+import Hulk from "../../assets/images/hulk-NB.png";
 
 import "./CharactersPage.scss";
 const Characters = (props) => {
@@ -12,7 +12,6 @@ const Characters = (props) => {
   const [data, setData] = useState();
 
   const [searchCharacter, setSearchCharacter] = useState("");
-  // const [debouncedSearch] = useDebounce(searchCharacter, 1000);
 
   const [count, setCount] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
@@ -74,32 +73,35 @@ const Characters = (props) => {
       <div className="page-container">
         <h1>Characters</h1>
 
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Recherche tes personnages préférés ..."
-          value={searchCharacter}
-          // value={debouncedSearch}
-          onChange={handleSearch}
-        />
-        <div className="paginationTwo">
-          {page !== 1 && (
-            <button onClick={goToPreviousPage} className="prev">
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-          )}
+        <div className="hulk-input">
+          <img className="hulk" src={Hulk} alt="Hulk" />
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Recherche tes personnages préférés ..."
+            value={searchCharacter}
+            onChange={handleSearch}
+          />
+          <div className="pagination">
+            {page !== 1 && (
+              <button onClick={goToPreviousPage} className="prev">
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </button>
+            )}
 
-          {getPaginationGroup().map((item, index) => (
-            <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
-              <span>{item}</span>
-            </button>
-          ))}
-          {page !== numberOfPage && (
-            <button onClick={goToNextPage} className="next">
-              <FontAwesomeIcon icon={faChevronRight} />
-            </button>
-          )}
+            {getPaginationGroup().map((item, index) => (
+              <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+                <span>{item}</span>
+              </button>
+            ))}
+            {page !== numberOfPage && (
+              <button onClick={goToNextPage} className="next">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </button>
+            )}
+          </div>
         </div>
+
         <div className="characters-container">
           {data.results.map((character) => {
             return (

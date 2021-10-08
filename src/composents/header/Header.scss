@@ -16,6 +16,10 @@ header {
         color: white;
         text-decoration: none;
         margin-left: 2em;
+        &:hover {
+          background-color: rgb(163, 0, 0);
+          color: darkgray;
+        }
       }
     }
     .icon-bars {

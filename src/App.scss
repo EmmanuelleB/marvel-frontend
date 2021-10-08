@@ -1,7 +1,9 @@
 // BASE RULES
 body {
   font-family: "Anton", sans-serif;
-  background-color: lightgrey;
+  background-image: url(./assets/images/background_0.5.jpg);
+  background-position: center;
+  background-repeat: repeat-y;
 }
 
 .page-container {
@@ -15,12 +17,8 @@ body {
   width: 100vw;
   height: 90vh;
 }
+
 @media (max-width: 1200px) {
-  .page-container {
-    padding: 0 2em;
-  }
-}
-@media (max-width: 960px) {
   .page-container {
     padding: 0 2em;
   }
@@ -56,27 +54,8 @@ p {
 }
 
 // PAGINATION
-.pagination {
-  display: flex;
-  flex-wrap: wrap;
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    width: 15px;
-    height: 15px;
-    margin: 2px;
-    font-size: 10px;
-    cursor: pointer;
-    &:hover {
-      background-color: red;
-      color: white;
-    }
-  }
-}
 
-.paginationTwo {
+.pagination {
   display: flex;
   flex-wrap: wrap;
   button {
@@ -94,13 +73,17 @@ p {
   .next {
     background-color: grey;
     color: white;
+    &:hover {
+      background-color: rgb(77, 75, 75);
+      color: darkgray;
+    }
   }
   .btn {
     background-color: white;
 
     &:hover {
-      background-color: rgb(223, 223, 223);
-      color: white;
+      background-color: rgb(163, 0, 0);
+      color: darkgray;
     }
     &:focus {
       background-color: red;
@@ -113,13 +96,38 @@ p {
   }
 }
 
-.search-input {
-  width: 300px;
-  border: 0;
-  padding: 8px;
-  border-radius: 5px;
-  margin-bottom: 1em;
-  &:focus {
-    outline: none;
+.hulk-input {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 13em;
+  .search-input {
+    width: 300px;
+    border: 5px solid rgb(94, 94, 94);
+    // box-shadow: 3px 3px 4px 0px rgba(2, 105, 10, 0.5);
+    background-color: rgb(197, 197, 197);
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    color: rgb(94, 94, 94);
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &::placeholder {
+      color: rgb(94, 94, 94);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .hulk {
+    z-index: 0;
+    width: 300px;
+    position: absolute;
+    left: -8px;
+    top: 12px;
   }
 }
