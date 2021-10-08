@@ -16,7 +16,7 @@ const Comics = (props) => {
   const [count, setCount] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(1);
-  const [pageLimit, setPageLimit] = useState(3);
+  const [pageLimit, setPageLimit] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
