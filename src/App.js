@@ -6,6 +6,7 @@ import CharactersPage from "./pages/charactersPage/CharactersPage";
 import ComicsPage from "./pages/comicsPage/ComicsPage";
 import ComicsPageByCharacter from "./pages/comicsPageByCharacter/ComicsPageByCharacter";
 import FavoriesPage from "./pages/favoriesPage/FavoriesPage";
+import Footer from "./composents/footer/Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -89,6 +90,7 @@ function App() {
           <Homepage />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
