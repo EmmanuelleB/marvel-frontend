@@ -16,7 +16,7 @@ const Comics = (props) => {
   const [count, setCount] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(1);
-  const [pageLimit, setPageLimit] = useState(20);
+  const [pageLimit, setPageLimit] = useState(3);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,13 +50,18 @@ const Comics = (props) => {
 
   const getPaginationGroup = () => {
     if (numberOfPage < pageLimit) {
-      setPageLimit(numberOfPage);
-    }
-    let start = Math.floor((page - 1) / pageLimit) * pageLimit;
+      let start = Math.floor((page - 1) / numberOfPage) * numberOfPage;
 
-    return new Array(pageLimit).fill().map((item, index) => {
-      return start + index + 1;
-    });
+      return new Array(numberOfPage).fill().map((item, index) => {
+        return start + index + 1;
+      });
+    } else {
+      let start = Math.floor((page - 1) / pageLimit) * pageLimit;
+
+      return new Array(pageLimit).fill().map((item, index) => {
+        return start + index + 1;
+      });
+    }
   };
 
   const handleSearch = (event) => {
@@ -88,11 +93,12 @@ const Comics = (props) => {
               </button>
             )}
 
-            {getPaginationGroup().map((item, index) => (
-              <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
-                <span>{item}</span>
-              </button>
-            ))}
+            {page <= numberOfPage &&
+              getPaginationGroup().map((item, index) => (
+                <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+                  <span>{item}</span>
+                </button>
+              ))}
             {page !== numberOfPage && (
               <button onClick={goToNextPage} className="next">
                 <FontAwesomeIcon icon={faChevronRight} />

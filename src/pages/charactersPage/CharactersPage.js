@@ -16,7 +16,7 @@ const Characters = (props) => {
   const [count, setCount] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(1);
-  const [pageLimit, setPageLimit] = useState(20);
+  const [pageLimit, setPageLimit] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,13 +51,19 @@ const Characters = (props) => {
 
   const getPaginationGroup = () => {
     if (numberOfPage < pageLimit) {
-      setPageLimit(numberOfPage);
+      let start = Math.floor((page - 1) / numberOfPage) * numberOfPage;
+      console.log(new Array(numberOfPage).fill());
+      return new Array(numberOfPage).fill().map((item, index) => {
+        return start + index + 1;
+      });
+    } else {
+      let start = Math.floor((page - 1) / pageLimit) * pageLimit;
+      console.log("start", start);
+      console.log(new Array(pageLimit).fill());
+      return new Array(pageLimit).fill().map((item, index) => {
+        return start + index + 1;
+      });
     }
-    let start = Math.floor((page - 1) / pageLimit) * pageLimit;
-
-    return new Array(pageLimit).fill().map((item, index) => {
-      return start + index + 1;
-    });
   };
 
   const handleSearch = (event) => {
@@ -89,11 +95,13 @@ const Characters = (props) => {
               </button>
             )}
 
-            {getPaginationGroup().map((item, index) => (
-              <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
-                <span>{item}</span>
-              </button>
-            ))}
+            {page <= numberOfPage &&
+              getPaginationGroup().map((item, index) => (
+                <button key={index} onClick={changePage} className={`btn ${page === item ? "active" : null}`}>
+                  <span>{item}</span>
+                </button>
+              ))}
+
             {page !== numberOfPage && (
               <button onClick={goToNextPage} className="next">
                 <FontAwesomeIcon icon={faChevronRight} />
