@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Comic from "../../composents/comic/Comic";
 import "./ComicsPage.scss";
 import Hulk from "../../assets/images/hulk-NB.png";
+import BackgroundInput from "../../assets/images/input_marvel.png";
 
 const Comics = (props) => {
   const { handleFavories, faHeart, faChevronRight, faChevronLeft, isHamburgerModalOpen } = props;
@@ -79,6 +80,7 @@ const Comics = (props) => {
 
         <div className="hulk-input">
           <img className="hulk" src={Hulk} alt="Hulk" />
+          <img className="backgroundInput" src={BackgroundInput} alt="BackgroundInput" />
           <input
             className="search-input"
             type="text"

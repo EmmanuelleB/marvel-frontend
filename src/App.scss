@@ -3,7 +3,8 @@ body {
   font-family: "Anton", sans-serif;
   background-image: url(./assets/images/background_0.5.jpg);
   background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: repeat;
+  // background-size: cover;
 }
 
 .page-container {
@@ -101,14 +102,15 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 13em;
+  height: 14em;
+
   .search-input {
     width: 300px;
     border: 5px solid rgb(59, 59, 59);
     background-color: rgb(197, 197, 197);
     padding: 8px;
     border-radius: 5px;
-    margin-bottom: 1em;
+    margin-top: 1em;
     color: rgb(59, 59, 59);
     z-index: 5;
     position: absolute;
@@ -123,11 +125,18 @@ p {
   }
 
   .hulk {
-    z-index: 0;
+    z-index: 1;
     width: 300px;
     position: absolute;
-    left: -8px;
-    top: 12px;
+    left: 0;
+    top: 1.6em;
+  }
+  .backgroundInput {
+    z-index: 0;
+    width: 400px;
+    position: absolute;
+    top: -9.8em;
+    left: -2em;
   }
 }
 

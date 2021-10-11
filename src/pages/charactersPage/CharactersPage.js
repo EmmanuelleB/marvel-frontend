@@ -4,6 +4,7 @@ import ReactLoading from "react-loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Character from "../../composents/character/Character";
 import Hulk from "../../assets/images/hulk-NB.png";
+import BackgroundInput from "../../assets/images/input_marvel.png";
 
 import "./CharactersPage.scss";
 const Characters = (props) => {
@@ -81,6 +82,7 @@ const Characters = (props) => {
 
         <div className="hulk-input">
           <img className="hulk" src={Hulk} alt="Hulk" />
+          <img className="backgroundInput" src={BackgroundInput} alt="BackgroundInput" />
           <input
             className="search-input"
             type="text"
